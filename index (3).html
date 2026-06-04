@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taskflow — Task Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="brand"><span class="brand-dot"></span>Taskflow</div>
+  <div class="hdr-right">
+    <div class="stat-chip"><span id="hdrTotal">0 </span>tasks</div>
+    <div class="stat-chip"><span id="hdrDone">0 </span>done</div>
+  </div>
+</header>
+
+<!-- ADD TASK ROW -->
+<div class="compose-row">
+  <div class="compose-wrap">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+    <input id="taskInput" type="text" placeholder="Add a new task…" onkeydown="if(event.key==='Enter') addTask()">
+  </div>
+  <select class="priority-sel" id="priorityInput">
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+    <option value="low">Low</option>
+  </select>
+  <button class="add-btn" onclick="addTask()">+ Add Task</button>
+</div>
+
+<!-- FILTERS & SEARCH -->
+<div class="filter-row">
+  <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+  <button class="filter-btn" onclick="setFilter('active', this)">Active</button>
+  <button class="filter-btn" onclick="setFilter('done', this)">Done</button>
+  <button class="filter-btn" onclick="setFilter('high', this)">High priority</button>
+  <div class="search-wrap">
+    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="searchInput" type="text" placeholder="Search tasks…" oninput="renderTasks()">
+  </div>
+</div>
+
+<!-- TASK LIST -->
+<main class="task-area">
+  <div class="task-section-label" id="sectionLabel">All tasks</div>
+  <ul id="taskList" aria-label="Task list"></ul>
+</main>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
